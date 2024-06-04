@@ -17,7 +17,7 @@ module.exports = {
       }
     },
     fontFamily: {
-      'display': ["Futura"],
+      'display': ["Futura", "sans-serif"],
       'body': ['"Open Sans"'],
     },
     extend: {
