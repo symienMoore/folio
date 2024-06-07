@@ -6,7 +6,7 @@ import PreviewItem from './components/previewItem';
 // import ImageCarousel from './components/imageCarousel'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './components/ui/carousel'
 import { delay, motion } from "framer-motion"
-import { Route, Router, useRouterState } from '@tanstack/react-router';
+import { Route, Router, useRouterState, Link } from '@tanstack/react-router';
 
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.8 }}
-            className="font-display font-bold text-white"
+            className="font-display text-black mt-[200px]"
           >
             Symien Moore designs
           </motion.h1>
@@ -37,7 +37,7 @@ function App() {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="font-display text-white text-9xl font-bold w-30"
+            className="font-display text-black text-9xl font-bold w-30"
           >
             logos, apps & websites.
           </motion.h1>
@@ -68,7 +68,7 @@ function App() {
         {/* <div>
           <motion.div></motion.div>
         </div> */}
-        <h3 className='text-3xl text-white font-bold -ml-[1000px] mb-5 font-display'>Selected Work</h3>
+        <h3 className='text-3xl w-64 font-bold mb-5 font-display -ml-[10px]'>Selected Work</h3>
         <div className='w-full h-3/6 flex'>
           <motion.div 
           initial={{
@@ -83,7 +83,7 @@ function App() {
             whileHover={{ scale: 1.2 }}
             onHoverStart={e => {}}
             onHoverEnd={e => {}}
-            transition={{}}
+            transition={{duration: 1}}
             className='mt-24 hover:cursor-pointer'/>
             <h3 className='text-white font-display mt-24 mr-80 text-3xl ease-linear'>Surf</h3>
           </motion.div>
@@ -91,11 +91,13 @@ function App() {
           </div>
           <div className='min-h-[626px] w-8/12 bg-green-500 p-5'></div>
         </div>
-          <h3 className='text-white mt-44 -ml-[1120px] text-2xl font-semibold'>See more</h3>
+        <Link to="/work">
+          <h3 className='mt-44 p-2 text-2xl font-semibold w-64 -ml-[70px]'>See more</h3>
+        </Link>
       </section>
       <section className='w-full'>
-        <h3 className='text-white font-display font-bold -ml-[1100px] text-3xl'>Services</h3>
-        <div className='servcies-container flex flex-col text-white'>
+        <h3 className='font-display font-bold w-64 -ml-[60px] text-3xl'>Services</h3>
+        <div className='servcies-container flex flex-col'>
           <div className='flex flex-row my-10'>
             <div className='mr-[200px]'>00.1</div>
             <div>

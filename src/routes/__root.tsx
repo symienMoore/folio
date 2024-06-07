@@ -6,16 +6,16 @@ export const Route = createRootRoute({
   component: () => (
     <>
     <div className='flex items-baseline'>
-    <img srcSet="src/assets/logowhite.svg" alt="logo"  className='mr-10 h-auto w-auto p-0'/>
+    <img srcSet="src/assets/patternblack.svg" alt="logo"  className='mr-10 w-auto p-0 h-9'/>
       <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold text-white">
+        <Link to="/" className="[&.active]:font-bold">
           Home
         </Link>{' '}
-        <Link to="/about" className="[&.active]:font-bold text-white">
+        <Link to="/about" className="[&.active]:font-bold">
           About
         </Link>
-        <Link to="/addPost" className="[&.active]:font-bold text-white">
-          new post
+        <Link to="/work" className="[&.active]:font-bold">
+          work
         </Link>
       </div>
     </div>

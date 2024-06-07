@@ -13,6 +13,8 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as WorkImport } from './routes/work'
+import { Route as SigninImport } from './routes/signin'
 import { Route as AddPostImport } from './routes/addPost'
 
 // Create Virtual Routes
@@ -26,6 +28,16 @@ const AboutLazyRoute = AboutLazyImport.update({
   path: '/about',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+
+const WorkRoute = WorkImport.update({
+  path: '/work',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SigninRoute = SigninImport.update({
+  path: '/signin',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AddPostRoute = AddPostImport.update({
   path: '/addPost',
@@ -55,6 +67,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AddPostImport
       parentRoute: typeof rootRoute
     }
+    '/signin': {
+      id: '/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninImport
+      parentRoute: typeof rootRoute
+    }
+    '/work': {
+      id: '/work'
+      path: '/work'
+      fullPath: '/work'
+      preLoaderRoute: typeof WorkImport
+      parentRoute: typeof rootRoute
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -70,6 +96,8 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   AddPostRoute,
+  SigninRoute,
+  WorkRoute,
   AboutLazyRoute,
 })
 
@@ -83,6 +111,8 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/addPost",
+        "/signin",
+        "/work",
         "/about"
       ]
     },
@@ -91,6 +121,12 @@ export const routeTree = rootRoute.addChildren({
     },
     "/addPost": {
       "filePath": "addPost.tsx"
+    },
+    "/signin": {
+      "filePath": "signin.tsx"
+    },
+    "/work": {
+      "filePath": "work.tsx"
     },
     "/about": {
       "filePath": "about.lazy.tsx"
