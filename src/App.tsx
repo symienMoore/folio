@@ -1,42 +1,44 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 import ButtonReg from './components/button';
 import PreviewItem from './components/previewItem';
 // import ImageCarousel from './components/imageCarousel'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './components/ui/carousel'
 import { delay, motion } from "framer-motion"
-import { Route, Router, useRouterState, Link } from '@tanstack/react-router';
+import { useRouterState, Link } from '@tanstack/react-router';
 
 
 function App() {
+  // const [message, setMessage] = useState("")
+  // const [overlay, setOverlay] = useState(false)
   const router = useRouterState()
   useEffect(() => {
     console.log(router.location.pathname)
   }, [])
-  // const pictures = {
-  //   images: [
-  //     "https://www.pexels.com/photo/a-camera-book-and-flowers-on-a-beach-24245176/",
-  //     "https://www.pexels.com/photo/abundance-of-fruit-and-vegetables-on-table-22873594/",
-  //     "https://www.pexels.com/photo/aerial-view-of-a-city-1225100/",
-  //   ],
-  // };
+  // const test = () => {
+  //   setMessage("this is a test")
+  //   console.log(message)
+  // }
+  // const toOverlay = () => {
+  //   setOverlay(true)
+  // }
+
+  // const FromOverlay = () => {
+  //   setOverlay(false)
+  // }
+
+  
   return (
     <div>
       <section className="h-[700px]">
       <div className='mx-0 mt-60'>
           <motion.h1
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.8 }}
             className="font-display text-black mt-[200px]"
           >
             Symien Moore designs
           </motion.h1>
           <motion.h1
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
             className="font-display text-black text-9xl font-bold w-30"
           >
             logos, apps & websites.
@@ -44,58 +46,17 @@ function App() {
         </div>
       </section>
       <section className="h-screen">
-        {/* <Carousel orientation="vertical | horizontal">
-          <CarouselContent className='hover:cursor-pointer'>
-            <CarouselItem>
-              <div className="h-96 bg-blue-300">
-                <img
-                className='h-72 p-5 mx-auto mt-24'
-                  alt="surf"
-                  srcSet="src/assets/surf.svg"
-                />
-              </div>
-            </CarouselItem>
-            <CarouselItem>
-              <div className="bg-blue-700 w-100 h-96">new test</div>
-            </CarouselItem>
-            <CarouselItem>
-              <div className="bg-green-700 w-100 h-96">new test</div>
-            </CarouselItem>
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel> */}
-        {/* <div>
-          <motion.div></motion.div>
-        </div> */}
         <h3 className='text-3xl w-64 font-bold mb-5 font-display -ml-[10px]'>Selected Work</h3>
         <div className='w-full h-3/6 flex'>
-          <motion.div 
-          initial={{
-            
-          }}
-          className='min-h-[626px] w-8/12 bg-blue-500 p-20 relative'
-          >
-            <div className='absolute top-500 bg-red h-1/3 z-50 '></div>
-            <motion.img 
-            srcSet="src/assets/surf.svg" 
-            alt=" surf" 
-            whileHover={{ scale: 1.2 }}
-            onHoverStart={e => {}}
-            onHoverEnd={e => {}}
-            transition={{duration: 1}}
-            className='mt-24 hover:cursor-pointer'/>
-            <h3 className='text-white font-display mt-24 mr-80 text-3xl ease-linear'>Surf</h3>
-          </motion.div>
-          <div className='min-h-[626px] w-8/12 bg-red-500 p-5'>
-          </div>
-          <div className='min-h-[626px] w-8/12 bg-green-500 p-5'></div>
+          <PreviewItem title="Surf"/>
+          <PreviewItem title={"Evergreen Adventure Co."}/>
+          <PreviewItem title={undefined}/>
         </div>
         <Link to="/work">
           <h3 className='mt-44 p-2 text-2xl font-semibold w-64 -ml-[70px]'>See more</h3>
         </Link>
       </section>
-      <section className='w-full'>
+      <section className='w-full' id=''>
         <h3 className='font-display font-bold w-64 -ml-[60px] text-3xl'>Services</h3>
         <div className='servcies-container flex flex-col'>
           <div className='flex flex-row my-10'>
