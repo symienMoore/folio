@@ -15,12 +15,12 @@ const PreviewItem = ({title}: {title: string}) => {
     initial={{
       
     }}
-    className='min-h-[626px] w-1/3 bg-blue-500 p-20 relative'
+    className='group min-h-[626px] w-1/3 bg-blue-500 p-20 relative'
     onHoverStart={() => toOverlay()}
     onHoverEnd={() => FromOverlay()}
     >
      { overlay && <div 
-      className=' bg-black min-h-[626px] w-full p-0 mt-0 absolute top-0 left-0 opacity-25 duration-500'
+      className=' bg-black min-h-[626px] w-full p-0 mt-0 absolute top-0 left-0 opacity-25 transition duration-800'
       >
         <h1 className='text-white opacity-100 mx-auto my-[50%] relative'>UX/UI design</h1>
       </div>

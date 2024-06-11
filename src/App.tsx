@@ -33,16 +33,15 @@ function App() {
     <div>
       <section className="h-[700px]">
       <div className='mx-0 mt-60'>
-          <motion.h1
-            className="font-display text-black mt-[200px]"
-          >
+          <motion.h1 className="font-display text-black mt-[200px]">
             Symien Moore designs
           </motion.h1>
-          <motion.h1
-            className="font-display text-black text-9xl font-bold w-30"
-          >
+          <motion.h1 className="font-display text-black text-9xl font-bold w-30">
             logos, apps & websites.
           </motion.h1>
+          <div className='mx-0'>
+            <img className='mx-auto' alt="open to work" srcSet="src/assets/available.svg" />
+          </div>
         </div>
       </section>
       <section className="h-screen">
@@ -50,10 +49,10 @@ function App() {
         <div className='w-full h-3/6 flex'>
           <PreviewItem title="Surf"/>
           <PreviewItem title={"Evergreen Adventure Co."}/>
-          <PreviewItem title={undefined}/>
+          <PreviewItem title={"undefined"}/>
         </div>
         <Link to="/work">
-          <h3 className='mt-44 p-2 text-2xl font-semibold w-64 -ml-[70px]'>See more</h3>
+          <h3 className='mt-44 p-2 text-2xl font-semibold w-32 hover:bg-gradient-to-r from-cyan-500 to-blue-500 hover:text-white rounded-sm'>See more</h3>
         </Link>
       </section>
       <section className='w-full' id=''>
