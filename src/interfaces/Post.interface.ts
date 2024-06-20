@@ -8,7 +8,7 @@ interface Post {
     problem: string
     solution: string
     achievements: string
-    roles: string[]
+    roles: string
 }
 
 export default Post

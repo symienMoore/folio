@@ -12,10 +12,9 @@ const PreviewItem = ({title}: {title: string}) => {
       }
   return (
     <motion.div 
-    initial={{
-      
-    }}
-    className='group min-h-[626px] w-1/3 bg-blue-500 p-20 relative'
+    initial={{y: 0}}
+    whileHover={{y: 20}}
+    className='group min-h-[626px] w-1/3 m-2 bg-blue-500 p-20 relative'
     onHoverStart={() => toOverlay()}
     onHoverEnd={() => FromOverlay()}
     >
