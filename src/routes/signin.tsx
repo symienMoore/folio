@@ -1,65 +1,83 @@
 import { Button } from '@/components/ui/button'
 import { createFileRoute } from '@tanstack/react-router'
-import React, { useState } from 'react'
-import { Field, createFormFactory, useForm } from '@tanstack/react-form'
-import Login from '@/interfaces/Login.interface'
+import React, { useEffect, useState } from 'react'
+import {auth} from '../config/firebase'
+import { useAuth } from '@/config/firebase-context';
+import { signInWithEmailAndPassword } from "firebase/auth";
+
 
 const Signin = () => {
-    // const [email, password] = useState({email: '', password: ''})
-
+    const {currentUser} = useAuth()
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
+    const [userLoggedIn, setUserLoggedIn] = useState<boolean>()
     
-    const formFactory = createFormFactory<Login>({
-        defaultValues: {
-            email: '',
-            password: ''
+    useEffect(() => {
+      console.log(JSON.stringify(currentUser) + ": the current user")
+      checkUser(currentUser)
+    }, [currentUser])
+    
+    const checkUser = (user) => {
+        if(user) {
+            setUserLoggedIn(true)
         }
-    })
+        if(!user) {
+            setUserLoggedIn(false)
+        }
+        console.log(userLoggedIn)
+    }
 
-    const form = formFactory.useForm({
-        onSubmit: async ({value}) => {
-            console.log(value)
-        }
-    })
-//    const onSubmit = (e) => {
-//         console.log(e.email)
-//    }
+    const updateEmail = (e: { target: { value: React.SetStateAction<string> } }) => {
+        setEmail(e.target.value)
+    }
+
+    const updatePassword = (e: {target: { value: React.SetStateAction<string> } }) => {
+        setPassword(e.target.value)
+    }
+
+    const doSignIn = async () => {
+        await signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user)
+        })
+        .catch((error: {code: '', message: ''}) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode + errorMessage)
+        });
+    }
   return (
     <>
-    <div className='w-96 mx-auto my-52'>
+        { !userLoggedIn ? <div className='w-96 mx-auto my-52'>
         <h1 className='font-display text-2xl mr-52'>Welcome back</h1>
         <form action="submit" className='flex flex-col' 
-        onSubmit={(e) => {
+        onSubmit={
+            (e) => {
             e.stopPropagation(); 
             e.preventDefault()
-            form.handleSubmit()
+            doSignIn()
         }}>
             <label className='text-left text-gray-600' htmlFor="email">Email</label>
-            <form.Field
-             name="email"
-            //  validators={{
-            //     onChange: ({value}) => {
-                    
-            //     }
-            //  }}
-             children={(field) => (
-              <>
-               <input 
+             <input 
                     className='border m-2 p-2 rounded-md outline-none' 
                     placeholder='someone@example.com' 
                     required 
                     type="email" 
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(e.target.value)}
+                    onChange={updateEmail}
                 />
-              </>
-              )}
-            />
             <label className='text-left text-gray-600' htmlFor="password">Password</label>
-            <input className='border m-2 p-2 rounded-md outline-none' placeholder='********' required type='password' name='pasword' />
+            <input 
+                    className='border m-2 p-2 rounded-md outline-none' 
+                    placeholder='******' 
+                    required 
+                    type="password" 
+                    onChange={updatePassword}
+                />
             <Button>Sign in</Button>
         </form>
-    </div>
+     </div> : 
+     null }
     </>
   )
 }
