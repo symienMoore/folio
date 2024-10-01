@@ -1,5 +1,5 @@
 
-import { Button } from '@chakra-ui/react'
+// import { Button } from '@chakra-ui/react'
 import './App.css'
 import { motion } from 'framer-motion'
 import { createBucketClient } from '@cosmicjs/sdk';
@@ -20,6 +20,7 @@ type Post = {
   img3: string
   img4: string
   img5: string
+  thumbnail: string
 };
 
 const cosmic = createBucketClient({
@@ -32,12 +33,12 @@ async function getPosts() {
     .find({
       type: "posts",
     })
-    .props("title,description,image");
+    // .props("title,description,image");
   return posts;
 }
 
 function App() {
-   const [posts, setPosts] = useState<Post[]>([])
+  const [posts, setPosts] = useState<Post[]>([])
   useEffect(() => {
     getPosts().then((posts) => {
       setPosts(posts);
@@ -115,7 +116,13 @@ function App() {
       </div>
       <div>
         {posts.map((post, index) => (
-          <h1 key={index}>{post.title}</h1>
+          <div key={index}>
+            <div>
+              <h1>{post.title}</h1>
+              <p>{post.description}</p>
+            </div>
+            <img src={post.thumbnail} alt="" width={220}/> 
+          </div>
         ))}
       </div>
     </div>
