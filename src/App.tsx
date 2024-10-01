@@ -116,8 +116,8 @@ function App() {
       </div>
       <div>
         {posts.map((post, index) => (
-          <div key={index}>
-            <div>
+          <div key={index} className='flex'>
+            <div className='flex-1'>
               <h1>{post.title}</h1>
               <p>{post.description}</p>
             </div>
