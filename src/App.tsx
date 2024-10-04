@@ -1,27 +1,44 @@
 
-// import { Button } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
+import { ArrowForwardIcon } from '@chakra-ui/icons'
 import './App.css'
 import { motion } from 'framer-motion'
 import { createBucketClient } from '@cosmicjs/sdk';
 import { useEffect, useState } from 'react';
 
 
-type Post = {
-  title: string;
-  description: string;
-  slug: string;
-  problem: string;
-  solution: string;
-  start: Date
-  end: Date
-  in_progress: boolean
-  img1: string
-  img2: string
-  img3: string
-  img4: string
-  img5: string
-  thumbnail: string
-};
+type Post ={
+    "id": string,
+    "slug": string,
+    "title": string,
+    "content": string,
+    "bucket": string,
+    "created_at": string | Date,
+    "modified_at": string | Date,
+    "status": "published",
+    "published_at": string | Date,
+    "modified_by": "66f053d3a6354f2a23284097",
+    "created_by": "66f053d3a6354f2a23284097",
+    "publish_at": string | Date,
+    "thumbnail": string,
+    "type": string,
+    "metadata": {
+        "problem:": "test",
+        "solution:": "test",
+        "start:": "2024-10-03",
+        "end:": "2024-10-10",
+        "in_progress:": boolean,
+        "img1": {
+            "url": string,
+            "imgix_url": string
+        },
+        "img2": string,
+        "img3": string,
+        "img4": string,
+        "img5": string,
+        "description:": string
+    }
+}
 
 const cosmic = createBucketClient({
   bucketSlug: import.meta.env.VITE_BUCKET_SLUG || "",
@@ -33,55 +50,25 @@ async function getPosts() {
     .find({
       type: "posts",
     })
-    // .props("title,description,image");
+    // .props("title,metadata.description");
   return posts;
 }
 
 function App() {
   const [posts, setPosts] = useState<Post[]>([])
   useEffect(() => {
-    getPosts().then((posts) => {
+    getPosts().then((posts: Post[]) => {
+      console.log(posts[0], "metadata")
       setPosts(posts);
     });
-    console.log(posts, "posts")
+    console.log(posts[0], "posts")
   }, [])
   
 
 
   return (
     <div className='container mx-auto'>
-      {/* <div className='flex items-center  mx-auto'>
-        <div className='flex-1'>
-        <motion.h1
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{
-          duration: 0.8,
-          delay: 0.8,
-        }}
-         className='font-bhs text-8xl font-bold text-regal-blue'>
-          Symien Moore
-          </motion.h1>
-          <motion.p 
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            duration: 0.9,
-            delay: 0.9,
-          }}
-          className='text-xl w-[600px] text-[#7d7d7d] mt-[12px]'>
-            I am a results driven, passionate, designer & developer, 
-            focused on the people side of technology. I am a creative
-            problem solver, with a passion for creating beautiful,
-            functional, and user-friendly applications.
-          </motion.p>
-          <Button colorScheme='blackAlpha' variant='outline'>My Work</Button>
-        </div>
-        <div className='flex-2'>
-          <img className='h-[900px]' src="src/assets/profilepic.svg" alt="" />
-        </div>
-      </div> */}
-      <div className='mt-48'>
+      <div className='mt-24'>
         <motion.h1
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -107,19 +94,24 @@ function App() {
           </motion.p>
           {/* <Button colorScheme='blackAlpha' variant='outline'>My Work</Button> */}
         </div>
-      <div className='flex space-x-24 mt-8'>
-      <img className='h-[900px] ' src="src/assets/profilepic.svg" alt="" />
+      <div className='flex mt-8 mx-auto'>
+      <img className='h-[900px] flex-1' src="src/assets/profilepic.svg" alt="" />
       <img className='h-[900px]' src="src/assets/profile2.jpeg" alt="" />
       </div>
-      <div className='w-full text-regal-blue'>
-          <h1 className='mx-auto font-bhs text-7xl pt-48'>"people ignore design <br />that ignores people..."</h1>
+      <div className='w-full text-regal-blue h-[500px] flex'>
+          <h1 className='mx-auto font-bhs text-7xl pt-72 items-center justify-center'>"people ignore design <br />that ignores people..."</h1>
       </div>
-      <div>
+      <div className='mt-48'>
         {posts.map((post, index) => (
-          <div key={index} className='flex'>
+          <div key={index} className='lg:flex items-center mt-44'>
             <div className='flex-1'>
-              <h1>{post.title}</h1>
-              <p>{post.description}</p>
+              <h1 className='text-5xl font-bold font-bhs'>{post.title}</h1>
+              <p className='text-[#7d7d7d] text-2xl w-1/2'>{post.metadata['description:']}.</p>
+              <p>In progress: <span className={`bg-blue-500 ${post.metadata['in_progress:'] === true ? 'text-white' : 'text-black'}`}>{post.metadata['in_progress:'].toString()}</span></p>
+              <Button rightIcon={<ArrowForwardIcon />}>
+              <link rel="stylesheet" href="/posts" />
+              See more
+              </Button>
             </div>
             <img src={post.thumbnail} alt="" width={220}/> 
           </div>
