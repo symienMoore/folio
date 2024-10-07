@@ -70,22 +70,10 @@ function App() {
     <div className='container mx-auto'>
       <div className='mt-24'>
         <motion.h1
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{
-          duration: 0.8,
-          delay: 0.8,
-        }}
          className='font-bhs text-9xl font-bold text-regal-blue'>
           Symien Moore
           </motion.h1>
-          <motion.p 
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            duration: 0.9,
-            delay: 0.9,
-          }}
+          <motion.p
           className='text-xl w-[600px] text-[#7d7d7d] mt-[12px]'>
             I am a results driven, passionate, designer & developer, 
             focused on the people side of technology. I am a creative
@@ -94,8 +82,8 @@ function App() {
           </motion.p>
           {/* <Button colorScheme='blackAlpha' variant='outline'>My Work</Button> */}
         </div>
-      <div className='flex mt-8 mx-auto'>
-      <img className='h-[900px] flex-1' src="src/assets/profilepic.svg" alt="" />
+      <div className='flex mt-8 mx-auto gap-40'>
+      <img className='h-[900px]' src="src/assets/profilepic.svg" alt="" />
       <img className='h-[900px]' src="src/assets/profile2.jpeg" alt="" />
       </div>
       <div className='w-full text-regal-blue h-[500px] flex'>
@@ -103,18 +91,25 @@ function App() {
       </div>
       <div className='mt-48'>
         {posts.map((post, index) => (
-          <div key={index} className='lg:flex items-center mt-44'>
+          <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.5,
+          }}
+           key={index} className='lg:flex items-center mt-44'>
             <div className='flex-1'>
-              <h1 className='text-5xl font-bold font-bhs'>{post.title}</h1>
+              <h1 className='text-5xl font-bold font-bhs text-regal-blue'>{post.title}</h1>
               <p className='text-[#7d7d7d] text-2xl w-1/2'>{post.metadata['description:']}.</p>
-              <p>In progress: <span className={`bg-blue-500 ${post.metadata['in_progress:'] === true ? 'text-white' : 'text-black'}`}>{post.metadata['in_progress:'].toString()}</span></p>
+              <p>In progress: <span className={`font-bold ${post.metadata['in_progress:'] == true ? 'text-regal-blue' : ''}`}>{post.metadata['in_progress:'].toString()}</span></p>
               <Button rightIcon={<ArrowForwardIcon />}>
               <link rel="stylesheet" href="/posts" />
               See more
               </Button>
             </div>
-            <img src={post.thumbnail} alt="" width={220}/> 
-          </div>
+              <img src={post.thumbnail} alt="" width={220}/> 
+          </motion.div>
         ))}
       </div>
     </div>

@@ -6,7 +6,7 @@ export default {
   ],
   theme: {
     colors: {
-      "regal-blue": "#243c5a",
+      "regal-blue": "#13A3F4",
       "purple": "#B20BFF"
     },
     extend: {
