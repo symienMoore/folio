@@ -5,6 +5,7 @@ import './App.css'
 import { motion } from 'framer-motion'
 import { createBucketClient } from '@cosmicjs/sdk';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
 type Post ={
@@ -70,11 +71,11 @@ function App() {
     <div className='container mx-auto'>
       <div className='mt-24'>
         <motion.h1
-         className='font-bhs text-9xl font-bold text-regal-blue'>
+         className='font-bhs lg:text-9xl font-bold text-regal-blue'>
           Symien Moore
           </motion.h1>
           <motion.p
-          className='text-xl w-[600px] text-[#7d7d7d] mt-[12px]'>
+          className='lg:text-xl w-[600px] text-[#7d7d7d] mt-[12px]'>
             I am a results driven, passionate, designer & developer, 
             focused on the people side of technology. I am a creative
             problem solver, with a passion for creating beautiful,
@@ -100,12 +101,11 @@ function App() {
           }}
            key={index} className='lg:flex items-center mt-44'>
             <div className='flex-1'>
-              <h1 className='text-5xl font-bold font-bhs text-regal-blue'>{post.title}</h1>
-              <p className='text-[#7d7d7d] text-2xl w-1/2'>{post.metadata['description:']}.</p>
+              <h1 className='lg:text-5xl font-bold font-bhs text-regal-blue'>{post.title}</h1>
+              <p className='text-[#7d7d7d] text-2xl lg:w-1/2'>{post.metadata['description:']}.</p>
               <p>In progress: <span className={`font-bold ${post.metadata['in_progress:'] == true ? 'text-regal-blue' : ''}`}>{post.metadata['in_progress:'].toString()}</span></p>
               <Button rightIcon={<ArrowForwardIcon />}>
-              <link rel="stylesheet" href="/posts" />
-              See more
+              <Link to={post.slug}>See more</Link>
               </Button>
             </div>
               <img src={post.thumbnail} alt="" width={220}/> 

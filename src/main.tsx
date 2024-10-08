@@ -8,6 +8,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Project from './Project.tsx'
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/:slug",
-    element: <div>Slug</div>,
+    element: <Project />,
   }
 ]);
 createRoot(document.getElementById('root')!).render(
