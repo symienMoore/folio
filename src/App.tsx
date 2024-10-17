@@ -6,40 +6,10 @@ import { motion } from 'framer-motion'
 import { createBucketClient } from '@cosmicjs/sdk';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Post } from '../types';
 
 
-type Post ={
-    "id": string,
-    "slug": string,
-    "title": string,
-    "content": string,
-    "bucket": string,
-    "created_at": string | Date,
-    "modified_at": string | Date,
-    "status": "published",
-    "published_at": string | Date,
-    "modified_by": "66f053d3a6354f2a23284097",
-    "created_by": "66f053d3a6354f2a23284097",
-    "publish_at": string | Date,
-    "thumbnail": string,
-    "type": string,
-    "metadata": {
-        "problem:": "test",
-        "solution:": "test",
-        "start:": "2024-10-03",
-        "end:": "2024-10-10",
-        "in_progress:": boolean,
-        "img1": {
-            "url": string,
-            "imgix_url": string
-        },
-        "img2": string,
-        "img3": string,
-        "img4": string,
-        "img5": string,
-        "description:": string
-    }
-}
+
 
 const cosmic = createBucketClient({
   bucketSlug: import.meta.env.VITE_BUCKET_SLUG || "",
@@ -59,23 +29,22 @@ function App() {
   const [posts, setPosts] = useState<Post[]>([])
   useEffect(() => {
     getPosts().then((posts: Post[]) => {
-      console.log(posts[0], "metadata")
       setPosts(posts);
     });
     console.log(posts[0], "posts")
-  }, [])
+  }, [posts])
   
 
 
   return (
     <div className='container mx-auto'>
-      <div className='mt-24'>
+      <div className='mt-24 flex flex-col'>
         <motion.h1
          className='font-bhs lg:text-9xl font-bold text-regal-blue'>
           Symien Moore
           </motion.h1>
           <motion.p
-          className='lg:text-xl w-[600px] text-[#7d7d7d] mt-[12px]'>
+          className=' lg:w-[600px] text-gray mt-[12px] text-md lg:text-2xl'>
             I am a results driven, passionate, designer & developer, 
             focused on the people side of technology. I am a creative
             problem solver, with a passion for creating beautiful,
@@ -83,12 +52,25 @@ function App() {
           </motion.p>
           {/* <Button colorScheme='blackAlpha' variant='outline'>My Work</Button> */}
         </div>
-      <div className='flex mt-8 mx-auto gap-40'>
+      {/* <div className='flex mt-8 mx-auto gap-40'>
       <img className='h-[900px]' src="src/assets/profilepic.svg" alt="" />
       <img className='h-[900px]' src="src/assets/profile2.jpeg" alt="" />
-      </div>
+      </div> */}
       <div className='w-full text-regal-blue h-[500px] flex'>
-          <h1 className='mx-auto font-bhs text-7xl pt-72 items-center justify-center'>"people ignore design <br />that ignores people..."</h1>
+          <h1 className='mx-auto font-bhs lg:text-7xl pt-72 lg:items-center lg:justify-center'>"people ignore design <br />that ignores people..."</h1>
+      </div>
+      <div className='lg:flex lg:flex-row lg:gap-20 justify-center items-center flex-col'>
+        <img src="src/assets/profilePic.svg" alt="" width={500}/>
+        <div className='w-96'>
+          <p className='lg:text-2xl text-gray'>
+            The quote above is from designer Frank Chimero, and it is one that I base
+            all my work on. I believe that design should be user-centered, and that
+            the user experience should be at the forefront of every design decision.
+            I am fortunate enough to have worked with various companies, designers, & 
+            developers who share the same belief.
+          </p>
+          <button className='bg-regal-blue text-white p-3 rounded'>Get in touch</button>
+        </div>
       </div>
       <div className='mt-48'>
         {posts.map((post, index) => (
@@ -96,8 +78,8 @@ function App() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{
-            duration: 0.5,
-            delay: 0.5,
+            duration: 0.2,
+            delay: 0.2,
           }}
            key={index} className='lg:flex items-center mt-44'>
             <div className='flex-1'>

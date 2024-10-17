@@ -7,7 +7,10 @@ export default {
   theme: {
     colors: {
       "regal-blue": "#13A3F4",
-      "purple": "#B20BFF"
+      "purple": "#B20BFF",
+      "white": "#FFFFFF",
+      "black": "#000000",
+      "gray": "#7D7D7D"
     },
     extend: {
       fontFamily: {
