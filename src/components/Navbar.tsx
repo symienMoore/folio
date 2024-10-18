@@ -8,12 +8,18 @@ const Navbar = () => {
         <div className="container mx-auto h-24">
             <div className="flex items-center justify-center">
                 <div className='flex space-x-4 pt-10 text-regal-blue text-2xl flex-1'>
-                    <FontAwesomeIcon icon={faInstagram} />
-                    <FontAwesomeIcon icon={faLinkedin} />
-                    <FontAwesomeIcon icon={faSquareBehance} />
+                      <a href="https://www.instagram.com/studio.bland/">
+                        <FontAwesomeIcon icon={faInstagram} />
+                      </a>
+                      <a href="https://www.linkedin.com/in/symien-moore/">
+                        <FontAwesomeIcon icon={faLinkedin} />
+                      </a>
+                      <a href="https://www.behance.net/symimoore">
+                        <FontAwesomeIcon icon={faSquareBehance} />
+                      </a>
                     <FontAwesomeIcon icon={faYoutube} />
                 </div>
-                <img className='h-16' src="src/assets/logo-2.svg" alt="" />
+                {/* <img className='h-16' src="src/assets/logo-2.svg" alt="" /> */}
             </div>
         </div>
     </div>

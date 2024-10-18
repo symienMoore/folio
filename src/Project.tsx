@@ -1,6 +1,6 @@
 import { createBucketClient } from "@cosmicjs/sdk";
 import { useEffect, useState } from "react"
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Post } from "../types.ts"   
 // import cosmic from 'cosmicjs'; // Import cosmicjs
 
@@ -17,17 +17,19 @@ const params = useParams();
 const [data, setData] = useState<Post | null>(null);
 useEffect(() => {
 const getPost = async () => {
-    const { objects: Post } = await cosmic.objects
+    const response = await cosmic.objects
         .find({
           type: "posts",
             slug: params.slug
         }).props("slug,title,metadata")
-        .depth(1)
-        .then((res) => setData(res.objects[0]));
-        // setData(post);
-        console.log(data, "data")
-        return data
+        .depth(1);
+        
+    if (response && response.objects && response.objects.length > 0) {
+        setData(response.objects[0]);
     }
+    console.log(data, "data");
+    return data;
+}
     //?get the info for the post from the url param and add the id to the fetch url
     getPost()
     console.log(data)
@@ -35,7 +37,7 @@ const getPost = async () => {
     // fetch(`https://api.cosmicjs.com/v3/buckets/${import.meta.env.VITE_BUCKET_SLUG}/objects/66fc54e4bf0105632ef059f7?read_key=${import.meta.env.VITE_BUCKET_READ_KEY}&depth=1&props=slug,title,metadata,`)
     // .then(res => res.json())
     // .then(data => console.log(data))
-}, [params])
+}, [params, data])
 
   return (
     <div className="container mx-auto">

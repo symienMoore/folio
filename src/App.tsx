@@ -38,26 +38,25 @@ function App() {
 
   return (
     <div className='container mx-auto'>
-      <div className='mt-24 flex flex-col'>
+      <div className='mt-24 flex flex-col h-72'>
         <motion.h1
          className='font-bhs lg:text-9xl font-bold text-regal-blue text-6xl text-center'>
           Symien Moore
           </motion.h1>
           <motion.p
-          className='lg:w-[600px] text-gray mt-[12px] text-2xl text-center'>
+          className='lg:w-[600px] text-gray mt-[12px] text-2xl text-center align-middle justify-center mx-auto'>
             I am a results driven, passionate, designer & developer, 
             focused on the people side of technology. I am a creative
             problem solver, with a passion for creating beautiful,
             functional, and user-friendly applications.
           </motion.p>
-          {/* <Button colorScheme='blackAlpha' variant='outline'>My Work</Button> */}
         </div>
       {/* <div className='flex mt-8 mx-auto gap-40'>
       <img className='h-[900px]' src="src/assets/profilepic.svg" alt="" />
       <img className='h-[900px]' src="src/assets/profile2.jpeg" alt="" />
       </div> */}
-      <div className='flex flex-row items-center'>
-        <h1 className='mx-auto font-bhs text-5xl flex-1'>"people ignore design <br />that ignores people..."</h1>
+      <div className='flex flex-row items-center mt-24'>
+        <h1 className='mx-auto font-bhs lg:text-7xl text-5xl flex-1 text-regal-blue'>"people ignore design <br />that ignores people..."</h1>
         <div className='flex-1'>
         <img src="src/assets/profilePic.svg" alt="" width={700}/>
           <p className='text-2xl text-gray '>
